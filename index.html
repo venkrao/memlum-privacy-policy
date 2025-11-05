@@ -3,42 +3,613 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Select Language - Memlum Privacy Policy</title>
+  <title>Memlum - Create your family life story!</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
         Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      max-width: 600px;
-      margin: 4rem auto;
-      padding: 0 1rem;
-      text-align: center;
-      color: #333;
+      color: #212121;
+      line-height: 1.7;
+      background: #FFFFFF;
+      min-height: 100vh;
     }
-    h1 {
-      color: #0055a5;
-      margin-bottom: 2rem;
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 3rem;
+      background: #FFFFFF;
+      border-bottom: 1px solid #E0E0E0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    a {
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
+    .logo-letter {
       display: inline-block;
-      margin: 1rem;
-      padding: 1rem 2rem;
-      font-size: 1.25rem;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      background-color: #0055a5;
-      transition: background-color 0.3s ease;
+      transition: transform 0.2s ease;
     }
-    a:hover {
-      background-color: #003d7a;
+    
+    .logo:hover .logo-letter {
+      transform: translateY(-2px);
+    }
+    
+    .logo-letter:nth-child(1) { color: #1E88E5; }
+    .logo-letter:nth-child(2) { color: #4ECDC4; }
+    .logo-letter:nth-child(3) { color: #45B7D1; }
+    .logo-letter:nth-child(4) { color: #96CEB4; }
+    .logo-letter:nth-child(5) { color: #FF8C42; }
+    .logo-letter:nth-child(6) { color: #DDA0DD; }
+    
+    .language-selector {
+      position: relative;
+    }
+    
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #757575;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      min-width: 80px;
+    }
+    
+    .lang-toggle:hover {
+      background-color: #F5F5F5;
+      border-color: #2196F3;
+      color: #2196F3;
+    }
+    
+    .lang-toggle.active {
+      background-color: #2196F3;
+      border-color: #2196F3;
+      color: #FFFFFF;
+    }
+    
+    .lang-toggle.active:hover {
+      background-color: #1976D2;
+    }
+    
+    .lang-arrow {
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .lang-toggle.open .lang-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 0;
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      min-width: 140px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    
+    .lang-dropdown.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .lang-option {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1.2rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #444;
+      transition: all 0.2s ease;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-weight: 500;
+    }
+    
+    .lang-option:hover {
+      background-color: #F5F5F5;
+      color: #2196F3;
+    }
+    
+    .lang-option.selected {
+      background-color: rgba(33, 150, 243, 0.1);
+      color: #2196F3;
+      font-weight: 600;
+    }
+    
+    .lang-option:not(:last-child) {
+      border-bottom: 1px solid #E0E0E0;
+    }
+    
+    .lang-label {
+      flex: 1;
+    }
+    
+    .lang-check {
+      color: #2196F3;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      display: none;
+    }
+    
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+    }
+    
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-top: 1rem;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #212121;
+      font-weight: bold;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #757575;
+      font-weight: 400;
+      margin-top: 0.5rem;
+    }
+    
+    .mission {
+      background: #FFFFFF;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2.5rem;
+      border: 1px solid #E0E0E0;
+    }
+    
+    .mission h2 {
+      color: #212121;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+    }
+    
+    .mission p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #757575;
+      font-weight: 400;
+    }
+    
+    .mission .memlum {
+      font-weight: 600;
+      color: #2196F3;
+    }
+    
+    .download-section {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    
+    .download-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      color: #FFFFFF;
+      background: #2196F3;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+      min-width: 260px;
+      text-align: center;
+    }
+    
+    .download-btn:hover {
+      background: #1976D2;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+    }
+    
+    .download-btn:active {
+      background: #1565C0;
+    }
+    
+    .privacy-section {
+      margin-top: 2.5rem;
+      text-align: center;
+      padding-top: 1.5rem;
+    }
+    
+    .privacy-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.5rem;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    
+    .privacy-icon {
+      color: #2196F3;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .privacy-text {
+      font-size: 0.875rem;
+      color: #757575;
+      line-height: 1.25;
+      text-align: left;
+      flex: 1;
+    }
+    
+    .privacy-links {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E0E0E0;
+      text-align: center;
+    }
+    
+    .privacy-links a {
+      color: #757575;
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+    }
+    
+    .privacy-links a:hover {
+      color: #2196F3;
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .mission {
+        padding: 1.5rem;
+        border-radius: 12px;
+      }
+      
+      .mission h2 {
+        font-size: 1.25rem;
+      }
+      
+      .mission p {
+        font-size: 0.9rem;
+      }
+      
+      main {
+        margin: 0;
+        padding: 1.5rem 1.5rem 3rem;
+      }
+      
+      .hero {
+        margin-bottom: 2rem;
+        padding-top: 0.5rem;
+      }
+      
+      .download-section {
+        margin-top: 2rem;
+      }
+      
+      .privacy-links {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+      }
+      
+      .language-selector {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .lang-dropdown {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+      }
+      
+      .lang-dropdown.open {
+        transform: translateX(-50%) translateY(0);
+      }
+      
+      .download-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+      }
+      
+      .privacy-links a {
+        display: block;
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <a href="privacy-policy-en.html" lang="en" hreflang="en">English</a>
-  <a href="privacy-policy-fr.html" lang="fr" hreflang="fr">Français</a>
-  <a href="privacy-policy-de.html" lang="de" hreflang="de">Deutsch</a>
-  <a href="privacy-policy-it.html" lang="it" hreflang="it">Italiano</a>
+  <header>
+    <div class="logo">
+      <span class="logo-letter">M</span>
+      <span class="logo-letter">e</span>
+      <span class="logo-letter">m</span>
+      <span class="logo-letter">l</span>
+      <span class="logo-letter">u</span>
+      <span class="logo-letter">m</span>
+    </div>
+    <div class="language-selector">
+      <button class="lang-toggle" id="lang-toggle">
+        <span id="lang-current">EN</span>
+        <span class="lang-arrow">▼</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown">
+        <button class="lang-option" data-lang="en">
+          <span class="lang-label">English</span>
+          <span class="lang-check">✓</span>
+        </button>
+        <button class="lang-option" data-lang="fr">
+          <span class="lang-label">Français</span>
+          <span class="lang-check">✓</span>
+        </button>
+        <button class="lang-option" data-lang="de">
+          <span class="lang-label">Deutsch</span>
+          <span class="lang-check">✓</span>
+        </button>
+        <button class="lang-option" data-lang="it">
+          <span class="lang-label">Italiano</span>
+          <span class="lang-check">✓</span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <div class="hero">
+      <h1 id="hero-title">Build your family life story</h1>
+      <p class="hero-subtitle" id="hero-subtitle">One recording at a time</p>
+    </div>
+    
+    <div class="mission">
+      <p id="mission-text">
+        <span class="memlum">Memlums</span> are recordings about yourself or someone in your family — from a childhood memory to a recent thought, from elder's stories to your own reflections.<br><br>
+        Even imperfectly, they become part of the life story you preserve and pass on.
+      </p>
+    </div>
+    
+    <div class="download-section">
+      <a href="https://play.google.com/apps/testing/com.memlum.app" class="download-btn" id="download-text">
+        Download the app to start
+      </a>
+    </div>
+    
+    <div class="privacy-section">
+      <div class="privacy-row">
+        <svg class="privacy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5V11C4 16.55 7.16 21.74 12 23C16.84 21.74 20 16.55 20 11V5L12 2ZM12 22C8.13 20.91 5 16.5 5 11.18V6.3L12 3.77L19 6.3V11.18C19 16.5 15.87 20.91 12 22Z" fill="#2196F3"/>
+          <path d="M12 7C10.9 7 10 7.9 10 9V13C10 14.1 10.9 15 12 15C13.1 15 14 14.1 14 13V9C14 7.9 13.1 7 12 7ZM12 14C11.45 14 11 13.55 11 13V9C11 8.45 11.45 8 12 8C12.55 8 13 8.45 13 9V13C13 13.55 12.55 14 12 14Z" fill="#2196F3"/>
+        </svg>
+        <p class="privacy-text" id="privacy-text">Your data stays private on your device</p>
+      </div>
+    </div>
+    
+    <div class="privacy-links">
+      <a href="privacy-policy-en.html" id="privacy-link-en">Privacy Policy</a>
+      <a href="privacy-policy-fr.html" id="privacy-link-fr" style="display: none;">Politique de confidentialité</a>
+      <a href="privacy-policy-de.html" id="privacy-link-de" style="display: none;">Datenschutzerklärung</a>
+      <a href="privacy-policy-it.html" id="privacy-link-it" style="display: none;">Informativa sulla privacy</a>
+    </div>
+  </main>
+  
+  <script>
+    const translations = {
+      en: {
+        heroTitle: "Build your family life story",
+        heroSubtitle: "One recording at a time",
+        missionText: `<span class="memlum">Memlums</span> are recordings about yourself or someone in your family - from a childhood memory to a recent thought, from elder's stories to your own reflections.<br><br>Even imperfectly, they become part of the life story you preserve and pass on.`,
+        downloadText: "Download the app to start",
+        privacyText: "Your data stays private on your device",
+        privacyLink: "Privacy Policy"
+      },
+      fr: {
+        heroTitle: "Construisez votre histoire de famille",
+        heroSubtitle: "Un enregistrement à la fois",
+        missionText: `Les <span class="memlum">Memlums</span> sont des enregistrements vous concernant ou concernant un membre de votre famille - qu'il s'agisse d'un souvenir d'enfance ou d'une réflexion récente, d'histoires racontées par un aîné ou de vos propres réflexions.<br><br>Même sous une forme imparfaite, ils font partie intégrante de l'histoire de votre vie que vous pouvez préserver et transmettre.`,
+        downloadText: "Téléchargez l'application pour commencer",
+        privacyText: "Vos données restent privées sur votre appareil",
+        privacyLink: "Politique de confidentialité"
+      },
+      de: {
+        heroTitle: "Bauen Sie Ihre Familienlebensgeschichte",
+        heroSubtitle: "Eine Aufnahme nach der anderen",
+        missionText: `Memlums sind Aufzeichnungen über dich selbst oder jemanden aus deiner Familie - von Kindheitserinnerungen bis hin zu aktuellen Gedanken, von Geschichten älterer Menschen bis hin zu deinen eigenen Reflexionen.<br><br>Selbst in unvollkommener Form werden sie Teil deiner Lebensgeschichte, die du bewahren und weitergeben kannst.`,
+        downloadText: "Laden Sie die App herunter, um zu beginnen",
+        privacyText: "Ihre Daten bleiben privat auf Ihrem Gerät",
+        privacyLink: "Datenschutzerklärung"
+      },
+      it: {
+        heroTitle: "Costruisci la tua storia di famiglia",
+        heroSubtitle: "Una registrazione alla volta",
+        missionText: `I <span class="memlum">Memlums</span> sono registrazioni su te stesso o su qualcuno della tua famiglia - dai ricordi d'infanzia ai pensieri recenti, dalle storie degli anziani alle tue riflessioni.<br><br>Anche se imperfetti, diventano parte della storia della tua vita che puoi conservare e tramandare.`,
+        downloadText: "Scarica l'app per iniziare",
+        privacyText: "I tuoi dati rimangono privati sul tuo dispositivo",
+        privacyLink: "Informativa sulla privacy"
+      }
+    };
+    
+    // Get language from localStorage or default to 'en'
+    let currentLang = localStorage.getItem('memlum-language') || 'en';
+    
+    const langLabels = {
+      en: 'EN',
+      fr: 'FR',
+      de: 'DE',
+      it: 'IT'
+    };
+    
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('memlum-language', lang);
+      
+      const t = translations[lang];
+      
+      // Update content
+      document.getElementById('hero-title').textContent = t.heroTitle;
+      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
+      document.getElementById('mission-text').innerHTML = t.missionText;
+      document.getElementById('download-text').textContent = t.downloadText;
+      document.getElementById('privacy-text').textContent = t.privacyText;
+      
+      // Update language dropdown display
+      document.getElementById('lang-current').textContent = langLabels[lang];
+      
+      // Update toggle button styling
+      const toggle = document.getElementById('lang-toggle');
+      toggle.classList.add('active');
+      
+      // Update dropdown options
+      document.querySelectorAll('.lang-option').forEach(option => {
+        option.classList.remove('selected');
+        const check = option.querySelector('.lang-check');
+        check.style.display = 'none';
+        
+        if (option.dataset.lang === lang) {
+          option.classList.add('selected');
+          check.style.display = 'inline';
+        }
+      });
+      
+      // Update privacy links visibility
+      document.getElementById('privacy-link-en').style.display = lang === 'en' ? 'inline' : 'none';
+      document.getElementById('privacy-link-fr').style.display = lang === 'fr' ? 'inline' : 'none';
+      document.getElementById('privacy-link-de').style.display = lang === 'de' ? 'inline' : 'none';
+      document.getElementById('privacy-link-it').style.display = lang === 'it' ? 'inline' : 'none';
+      
+      // Update document language
+      document.documentElement.lang = lang;
+      
+      // Close dropdown
+      closeDropdown();
+    }
+    
+    function toggleDropdown() {
+      const dropdown = document.getElementById('lang-dropdown');
+      const toggle = document.getElementById('lang-toggle');
+      const isOpen = dropdown.classList.contains('open');
+      
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    }
+    
+    function openDropdown() {
+      const dropdown = document.getElementById('lang-dropdown');
+      const toggle = document.getElementById('lang-toggle');
+      dropdown.classList.add('open');
+      toggle.classList.add('open');
+    }
+    
+    function closeDropdown() {
+      const dropdown = document.getElementById('lang-dropdown');
+      const toggle = document.getElementById('lang-toggle');
+      dropdown.classList.remove('open');
+      toggle.classList.remove('open');
+    }
+    
+    // Initialize language and dropdown display
+    function initializeLanguage() {
+      setLanguage(currentLang);
+      // Show checkmark for initial language
+      document.querySelectorAll('.lang-option').forEach(option => {
+        if (option.dataset.lang === currentLang) {
+          option.querySelector('.lang-check').style.display = 'inline';
+        }
+      });
+    }
+    
+    initializeLanguage();
+    
+    // Toggle dropdown on button click
+    document.getElementById('lang-toggle').addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+    
+    // Handle language selection
+    document.querySelectorAll('.lang-option').forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setLanguage(option.dataset.lang);
+      });
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      const selector = document.querySelector('.language-selector');
+      if (!selector.contains(e.target)) {
+        closeDropdown();
+      }
+    });
+    
+    // Close dropdown on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDropdown();
+      }
+    });
+  </script>
 </body>
 </html>
