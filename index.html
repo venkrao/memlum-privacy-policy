@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Memlum - Create your family life story!</title>
+  <title>Memlum - Create your life story!</title>
   <style>
     * {
       margin: 0;
@@ -171,35 +171,10 @@
       padding: 2.5rem 2rem 4rem;
     }
     
-    .hero {
-      text-align: center;
-      margin-bottom: 3rem;
-      padding-top: 1rem;
-    }
-    
-    .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #212121;
-      font-weight: bold;
-      line-height: 1.25;
-      letter-spacing: -0.5px;
-    }
-    
-    .hero-subtitle {
-      font-size: 1rem;
-      color: #757575;
-      font-weight: 400;
-      margin-top: 0.5rem;
-    }
-    
     .mission {
       background: #FFFFFF;
-      padding: 2.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
       margin-bottom: 2.5rem;
-      border: 1px solid #E0E0E0;
     }
     
     .mission h2 {
@@ -316,14 +291,6 @@
         font-size: 2rem;
       }
       
-      .hero h1 {
-        font-size: 1.75rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 0.9rem;
-      }
-      
       .mission {
         padding: 1.5rem;
         border-radius: 12px;
@@ -340,11 +307,6 @@
       main {
         margin: 0;
         padding: 1.5rem 1.5rem 3rem;
-      }
-      
-      .hero {
-        margin-bottom: 2rem;
-        padding-top: 0.5rem;
       }
       
       .download-section {
@@ -421,11 +383,6 @@
   </header>
   
   <main>
-    <div class="hero">
-      <h1 id="hero-title">Build your family life story</h1>
-      <p class="hero-subtitle" id="hero-subtitle">One recording at a time</p>
-    </div>
-    
     <div class="mission">
       <p id="mission-text">
         <span class="memlum">Memlums</span> are recordings about yourself or someone in your family — from a childhood memory to a recent thought, from elder's stories to your own reflections.<br><br>
@@ -460,32 +417,24 @@
   <script>
     const translations = {
       en: {
-        heroTitle: "Build your family life story",
-        heroSubtitle: "One recording at a time",
         missionText: `<span class="memlum">Memlums</span> are recordings about yourself or someone in your family - from a childhood memory to a recent thought, from elder's stories to your own reflections.<br><br>Even imperfectly, they become part of the life story you preserve and pass on.`,
         downloadText: "Download the app to start",
         privacyText: "Your data stays private on your device",
         privacyLink: "Privacy Policy"
       },
       fr: {
-        heroTitle: "Construisez votre histoire de famille",
-        heroSubtitle: "Un enregistrement à la fois",
         missionText: `Les <span class="memlum">Memlums</span> sont des enregistrements vous concernant ou concernant un membre de votre famille - qu'il s'agisse d'un souvenir d'enfance ou d'une réflexion récente, d'histoires racontées par un aîné ou de vos propres réflexions.<br><br>Même sous une forme imparfaite, ils font partie intégrante de l'histoire de votre vie que vous pouvez préserver et transmettre.`,
         downloadText: "Téléchargez l'application pour commencer",
         privacyText: "Vos données restent privées sur votre appareil",
         privacyLink: "Politique de confidentialité"
       },
       de: {
-        heroTitle: "Bauen Sie Ihre Familienlebensgeschichte",
-        heroSubtitle: "Eine Aufnahme nach der anderen",
         missionText: `Memlums sind Aufzeichnungen über dich selbst oder jemanden aus deiner Familie - von Kindheitserinnerungen bis hin zu aktuellen Gedanken, von Geschichten älterer Menschen bis hin zu deinen eigenen Reflexionen.<br><br>Selbst in unvollkommener Form werden sie Teil deiner Lebensgeschichte, die du bewahren und weitergeben kannst.`,
         downloadText: "Laden Sie die App herunter, um zu beginnen",
         privacyText: "Ihre Daten bleiben privat auf Ihrem Gerät",
         privacyLink: "Datenschutzerklärung"
       },
       it: {
-        heroTitle: "Costruisci la tua storia di famiglia",
-        heroSubtitle: "Una registrazione alla volta",
         missionText: `I <span class="memlum">Memlums</span> sono registrazioni su te stesso o su qualcuno della tua famiglia - dai ricordi d'infanzia ai pensieri recenti, dalle storie degli anziani alle tue riflessioni.<br><br>Anche se imperfetti, diventano parte della storia della tua vita che puoi conservare e tramandare.`,
         downloadText: "Scarica l'app per iniziare",
         privacyText: "I tuoi dati rimangono privati sul tuo dispositivo",
@@ -510,8 +459,6 @@
       const t = translations[lang];
       
       // Update content
-      document.getElementById('hero-title').textContent = t.heroTitle;
-      document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
       document.getElementById('mission-text').innerHTML = t.missionText;
       document.getElementById('download-text').textContent = t.downloadText;
       document.getElementById('privacy-text').textContent = t.privacyText;
