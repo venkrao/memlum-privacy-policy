@@ -1,0 +1,32 @@
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  text-decoration: none;
+  display: flex;
+}
+
+.logo-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 36px;
+  font-weight: 700;
+  color: #2196F3;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover .logo-text {
+  transform: scale(1.05);
+}
+
+/* Responsive Logo Styles */
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 32px;
+  }
+}
+

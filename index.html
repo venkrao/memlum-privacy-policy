@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="logo.css">
   <title>Memlum - Create your life story!</title>
   <style>
     * {
@@ -31,30 +36,6 @@
       top: 0;
       z-index: 100;
     }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    
-    .logo-letter {
-      display: inline-block;
-      transition: transform 0.2s ease;
-    }
-    
-    .logo:hover .logo-letter {
-      transform: translateY(-2px);
-    }
-    
-    .logo-letter:nth-child(1) { color: #1E88E5; }
-    .logo-letter:nth-child(2) { color: #4ECDC4; }
-    .logo-letter:nth-child(3) { color: #45B7D1; }
-    .logo-letter:nth-child(4) { color: #96CEB4; }
-    .logo-letter:nth-child(5) { color: #FF8C42; }
-    .logo-letter:nth-child(6) { color: #DDA0DD; }
     
     .language-selector {
       position: relative;
@@ -287,10 +268,6 @@
         padding: 1rem;
       }
       
-      .logo {
-        font-size: 2rem;
-      }
-      
       .mission {
         padding: 1.5rem;
         border-radius: 12px;
@@ -349,12 +326,7 @@
 <body>
   <header>
     <div class="logo">
-      <span class="logo-letter">M</span>
-      <span class="logo-letter">e</span>
-      <span class="logo-letter">m</span>
-      <span class="logo-letter">l</span>
-      <span class="logo-letter">u</span>
-      <span class="logo-letter">m</span>
+      <span class="logo-text">Memlum</span>
     </div>
     <div class="language-selector">
       <button class="lang-toggle" id="lang-toggle">
@@ -376,6 +348,14 @@
         </button>
         <button class="lang-option" data-lang="it">
           <span class="lang-label">Italiano</span>
+          <span class="lang-check">✓</span>
+        </button>
+        <button class="lang-option" data-lang="kn">
+          <span class="lang-label">ಕನ್ನಡ</span>
+          <span class="lang-check">✓</span>
+        </button>
+        <button class="lang-option" data-lang="te">
+          <span class="lang-label">తెలుగు</span>
           <span class="lang-check">✓</span>
         </button>
       </div>
@@ -411,6 +391,8 @@
       <a href="privacy-policy-fr.html" id="privacy-link-fr" style="display: none;">Politique de confidentialité</a>
       <a href="privacy-policy-de.html" id="privacy-link-de" style="display: none;">Datenschutzerklärung</a>
       <a href="privacy-policy-it.html" id="privacy-link-it" style="display: none;">Informativa sulla privacy</a>
+      <a href="privacy-policy-kn.html" id="privacy-link-kn" style="display: none;">ಗೌಪ್ಯತೆ ನೀತಿ</a>
+      <a href="privacy-policy-te.html" id="privacy-link-te" style="display: none;">గోప్యత విధానం</a>
     </div>
   </main>
   
@@ -439,6 +421,18 @@
         downloadText: "Scarica l'app per iniziare",
         privacyText: "I tuoi dati rimangono privati sul tuo dispositivo",
         privacyLink: "Informativa sulla privacy"
+      },
+      kn: {
+        missionText: `<span class="memlum">ಮೆಮ್ಲಮ್ಗಳು</span> ನಿಮ್ಮ ಬಗ್ಗೆ ಅಥವಾ ನಿಮ್ಮ ಕುಟುಂಬದ ಸದಸ್ಯರ ಬಗ್ಗೆ ಮಾಡಲಾದ ರೆಕಾರ್ಡಿಂಗ್ಗಳು — ಬಾಲ್ಯದ ನೆನಪುಗಳು, ಅನುಭವಗಳು, ಹಿರಿಯರ ಕಥೆಗಳು ಮತ್ತು ಚಿಂತನೆಗಳು, ಇತ್ಯಾದಿ.<br><br>ನಿಮ್ಮ ರೆಕಾರ್ಡಿಂಗ್ಗಳು ಅಸಂಪೂರ್ಣವೆನಿಸದರು, ಅವು ನಿಮ್ಮ ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬದ ಜೀವನ ಪರಂಪರೆಯನ್ನು ರೂಪಿಸುವ ನಿಮ್ಮ ಜೀವನ ಕಥೆಯನ್ನು ನಿರ್ಮಿಸುವ ನೆನಪುಗಳು.`,
+        downloadText: "ಪ್ರಾರಂಭಿಸಲು ಅಪ್ಲಿಕೇಶನ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+        privacyText: "ನಿಮ್ಮ ರೆಕಾರ್ಡಿಂಗ್ಗಳು ನಿಮ್ಮ ಫೋನಿನಲ್ಲೇ ಸಂಗ್ರಹಿಸಲ್ಪಡುತ್ತವೆ",
+        privacyLink: "ಗೌಪ್ಯತೆ ನೀತಿ"
+      },
+      te: {
+        missionText: `<span class="memlum">మెమ్లమ్స్</span> మీ గురించి లేదా మీ కుటుంబంలోని వాళ్ళ గురించిన రికార్డింగ్‌లు — చిన్నప్పటి జ్ఞాపకాలు, పెద్దలు చెప్పిన కథలు, అనుభవాలు, మొదలైనవి.<br><br>మీ రికార్డింగ్‌లు అసంపూర్ణం అనిపించినా, అవి మీ జీవితానికి మరియు మీ కుటుంబానికి వారసత్వంగా నిలిచే మీ జీవిత కథను నిర్మించే మెరుగైన జ్ఞాపకాలు.`,
+        downloadText: "ప్రారంభించడానికి అప్లికేషన్‌ను డౌన్‌లోడ్ చేయండి",
+        privacyText: "మీ డేటా మీ మొబైల్ ఫోను లోనే నిల్వచేయబడును",
+        privacyLink: "గోప్యత విధానం"
       }
     };
     
@@ -449,7 +443,9 @@
       en: 'EN',
       fr: 'FR',
       de: 'DE',
-      it: 'IT'
+      it: 'IT',
+      kn: 'KN',
+      te: 'TE'
     };
     
     function setLanguage(lang) {
@@ -487,6 +483,8 @@
       document.getElementById('privacy-link-fr').style.display = lang === 'fr' ? 'inline' : 'none';
       document.getElementById('privacy-link-de').style.display = lang === 'de' ? 'inline' : 'none';
       document.getElementById('privacy-link-it').style.display = lang === 'it' ? 'inline' : 'none';
+      document.getElementById('privacy-link-kn').style.display = lang === 'kn' ? 'inline' : 'none';
+      document.getElementById('privacy-link-te').style.display = lang === 'te' ? 'inline' : 'none';
       
       // Update document language
       document.documentElement.lang = lang;
