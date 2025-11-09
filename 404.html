@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Me Anything - Memlum</title>
+    <meta name="description" content="Ask questions about someone's life experiences">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            margin: 0 0 20px 0;
+            color: #2196F3;
+        }
+        p {
+            line-height: 1.6;
+            margin: 20px 0;
+            color: #666;
+        }
+        .play-store-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .play-store-button:hover {
+            background: #1976D2;
+        }
+        .loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Ask Me Anything</h1>
+        <div id="loading" class="loading">
+            <p>Opening Memlum app...</p>
+        </div>
+        <div id="content">
+            <p>You're about to ask a question about someone's life experiences.</p>
+            <p>If you have the Memlum app installed, it should open automatically.</p>
+            <p>If not, download it from the Play Store:</p>
+            <a href="https://play.google.com/store/apps/details?id=com.memlum.app.dev" class="play-store-button" id="playStoreLink">
+                Get Memlum App
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Extract UUID from URL path
+        const path = window.location.pathname;
+        const uuidMatch = path.match(/\/ama\/([^\/\?]+)/);
+        const uuid = uuidMatch ? uuidMatch[1] : null;
+
+        if (uuid) {
+            // This is an AMA link - try to open the app
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('content').style.display = 'none';
+            
+            // Add UUID to Play Store referrer
+            const playStoreLink = document.getElementById('playStoreLink');
+            playStoreLink.href = `https://play.google.com/store/apps/details?id=com.memlum.app.dev&referrer=ama_${uuid}`;
+            
+            // Try to open the app using Android intent URL
+            const intentUrl = `intent://ama/${uuid}#Intent;scheme=https;package=com.memlum.app.dev;end`;
+            
+            // Try to open the app
+            window.location.href = intentUrl;
+            
+            // Fallback: if app doesn't open within 2 seconds, show Play Store
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }, 2000);
+        } else {
+            // Not an AMA link - show normal 404
+            document.getElementById('title').textContent = 'Page Not Found';
+            document.getElementById('content').innerHTML = '<p>The page you are looking for does not exist.</p><a href="/" class="play-store-button">Go to Home</a>';
+        }
+    </script>
+</body>
+</html>
+
