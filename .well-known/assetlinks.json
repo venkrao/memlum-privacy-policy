@@ -3,9 +3,9 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.memlum.app.dev",
+      "package_name": "com.memlum.app",
       "sha256_cert_fingerprints": [
-        "FAC61745DC0903786FB9EDE62A962B399F7348F0BB6F899B8332667591033B9C"
+        "18AE61B7289E1E943E763F32C7875BA555E7B3D854ABB295718198AA646C3216"
       ]
     }
   }
