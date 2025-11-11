@@ -84,12 +84,13 @@
             
             // Add UUID to Play Store referrer
             const playStoreLink = document.getElementById('playStoreLink');
-            playStoreLink.href = `https://play.google.com/store/apps/details?id=com.memlum.app.dev&referrer=ama_${uuid}`;
+            playStoreLink.href = `https://play.google.com/store/apps/details?id=com.memlum.app&referrer=ama_${uuid}`;
             
-            // Try to open the app using Android intent URL
-            const intentUrl = `intent://ama/${uuid}#Intent;scheme=https;package=com.memlum.app.dev;end`;
+            // Try to open the app using Android intent URL (fallback for when App Links don't work)
+            // Note: App Links should intercept BEFORE this page loads, but this is a fallback
+            const intentUrl = `intent://memlum.com/ama/${uuid}#Intent;scheme=https;package=com.memlum.app;end`;
             
-            // Try to open the app
+            // Try to open the app immediately
             window.location.href = intentUrl;
             
             // Fallback: if app doesn't open within 2 seconds, show Play Store
