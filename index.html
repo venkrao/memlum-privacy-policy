@@ -168,25 +168,6 @@
       transform: translateY(-1px);
     }
     
-    .privacy-links {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .privacy-links a {
-      color: #757575;
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 0.2s ease;
-    }
-    
-    .privacy-links a:hover {
-      color: #2196F3;
-    }
-    
     @media (max-width: 768px) {
       header {
         padding: 1rem;
@@ -243,12 +224,7 @@
         </a>
       </div>
       <div class="language-selector">
-        <a href="privacy-policy-en.html" class="lang-link" id="privacy-link-en">Privacy Policy</a>
-        <a href="privacy-policy-fr.html" class="lang-link" id="privacy-link-fr" style="display: none;">Politique de confidentialité</a>
-        <a href="privacy-policy-de.html" class="lang-link" id="privacy-link-de" style="display: none;">Datenschutzerklärung</a>
-        <a href="privacy-policy-it.html" class="lang-link" id="privacy-link-it" style="display: none;">Informativa sulla privacy</a>
-        <a href="privacy-policy-kn.html" class="lang-link" id="privacy-link-kn" style="display: none;">ಗೌಪ್ಯತೆ ನೀತಿ</a>
-        <a href="privacy-policy-te.html" class="lang-link" id="privacy-link-te" style="display: none;">గోప్యత విధానం</a>
+        <a href="privacy-policy-en.html" class="lang-link">Privacy Policy</a>
       </div>
     </div>
   </header>
@@ -285,54 +261,7 @@
          rel="noopener noreferrer">
         Download on Google Play
       </a>
-    
-    <div class="privacy-links">
-        <a href="privacy-policy-en.html" id="privacy-link-en-main">Privacy Policy</a>
-        <a href="privacy-policy-fr.html" id="privacy-link-fr-main" style="display: none;">Politique de confidentialité</a>
-        <a href="privacy-policy-de.html" id="privacy-link-de-main" style="display: none;">Datenschutzerklärung</a>
-        <a href="privacy-policy-it.html" id="privacy-link-it-main" style="display: none;">Informativa sulla privacy</a>
-        <a href="privacy-policy-kn.html" id="privacy-link-kn-main" style="display: none;">ಗೌಪ್ಯತೆ ನೀತಿ</a>
-        <a href="privacy-policy-te.html" id="privacy-link-te-main" style="display: none;">గోప్యత విధానం</a>
-      </div>
     </div>
   </main>
-  
-  <script>
-    // Simple language detection and privacy link switching
-    const lang = navigator.language.split('-')[0] || 'en';
-    const supportedLangs = ['en', 'fr', 'de', 'it', 'kn', 'te'];
-    const currentLang = supportedLangs.includes(lang) ? lang : 'en';
-    
-    // Show appropriate privacy link
-    document.querySelectorAll('[id^="privacy-link-"]').forEach(link => {
-      link.style.display = 'none';
-    });
-    
-    const enLinks = document.querySelectorAll('[id$="-en"], [id$="-en-main"]');
-    const frLinks = document.querySelectorAll('[id$="-fr"], [id$="-fr-main"]');
-    const deLinks = document.querySelectorAll('[id$="-de"], [id$="-de-main"]');
-    const itLinks = document.querySelectorAll('[id$="-it"], [id$="-it-main"]');
-    const knLinks = document.querySelectorAll('[id$="-kn"], [id$="-kn-main"]');
-    const teLinks = document.querySelectorAll('[id$="-te"], [id$="-te-main"]');
-    
-    const langLinks = {
-      en: enLinks,
-      fr: frLinks,
-      de: deLinks,
-      it: itLinks,
-      kn: knLinks,
-      te: teLinks
-    };
-    
-    if (langLinks[currentLang]) {
-      langLinks[currentLang].forEach(link => {
-        link.style.display = 'inline' || 'block';
-      });
-      } else {
-      enLinks.forEach(link => {
-        link.style.display = 'inline' || 'block';
-      });
-    }
-  </script>
 </body>
 </html>
