@@ -237,13 +237,13 @@
       To enable sharing questions with family members, we store the following information in our cloud database (Firestore):
     </p>
     <ul>
-      <li>Question text (the questions you ask or receive)</li>
-      <li>Names (the names you provide when asking or answering questions)</li>
+      <li>Question text (the questions you ask or receive) - <strong>encrypted</strong></li>
+      <li>Names (the names you provide when asking or answering questions) - <strong>encrypted</strong></li>
       <li>Question status (whether a question has been answered)</li>
       <li>Anonymous identifiers (random IDs generated per app installation to link questions and answers)</li>
     </ul>
     <p>
-      <strong>Important:</strong> Your actual recordings (audio/video files) are never stored in the cloud. Only the question text and names are stored to enable the question-sharing feature.
+      <strong>Important:</strong> Your actual recordings (audio/video files) are never stored in the cloud. Question text and names are encrypted using AES-256-GCM encryption before being stored in Firestore. The encryption keys are stored only on your device and the recipient's device, meaning <strong>only the question sender and receiver can decrypt and read the question text and names</strong>. We (the developers) cannot read this encrypted data.
     </p>
     
     <h3>Anonymous Usage Data</h3>
@@ -253,7 +253,7 @@
 
     <h2>How We Use Your Data</h2>
     <p>
-      <strong>Question and Name Data:</strong> Question text and names stored in Firestore are used solely to enable the question-sharing feature, allowing family members to send and receive questions through the app.
+      <strong>Question and Name Data:</strong> Question text and names stored in Firestore are encrypted and used solely to enable the question-sharing feature, allowing family members to send and receive questions through the app. Because the data is encrypted and we do not have access to the decryption keys, we cannot read the question text or names.
     </p>
     <p>
       <strong>Anonymous Usage Data:</strong> Helps us understand how people use Memlum and improve the app experience. No personal recordings or identifiable content is included.
@@ -291,8 +291,11 @@
     <h2>Data Security</h2>
     <p>
       We use industry-standard security measures to protect data stored in Firestore. 
-      All data transmission is encrypted using HTTPS. Your recordings stored locally on 
-      your device are protected by your device's security features.
+      All data transmission is encrypted using HTTPS. Question text and names are encrypted 
+      using AES-256-GCM encryption before being stored in Firestore. Encryption keys are stored 
+      only on user devices (never in Firestore), ensuring that only the question sender and 
+      receiver can decrypt and read the content. Your recordings stored locally on your device 
+      are protected by your device's security features.
     </p>
 
     <h2>Third-Party Services</h2>
